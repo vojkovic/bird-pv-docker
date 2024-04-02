@@ -1,6 +1,4 @@
-FROM alpine:latest
-
-RUN apk add --no-cache bird
+FROM vojkovic/bird:latest
 
 ENV PATHVECTOR_VERSION=6.3.2
 
@@ -11,4 +9,4 @@ RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR
   mv pathvector /usr/local/bin/pathvector && \
   chmod +x /usr/local/bin/pathvector
 
-CMD ["bird", "-f", "-c", "/etc/bird.conf"]
+CMD ["pathvector", "-v", "-c", "/etc/pathvector.conf", "generate"]
