@@ -5,7 +5,7 @@ bird-pv-docker is a Docker image for the [BIRD Internet Routing Daemon](http://b
 
 ## Usage
 
-To run the container from the build vojkovic/bird-pv image, use the following command:
+To run the container from the vojkovic/bird-pv image, use the following command:
 
 ```bash
 docker run -d --name bird --network host --restart always -v /path/to/bird.conf:/etc/bird.conf vojkovic/bird-pv
