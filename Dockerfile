@@ -2,8 +2,9 @@ FROM alpine:latest
 
 RUN apk add --no-cache bird
 
-RUN export PATHVECTOR_VERSION=6.3.2 \
-  wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR_VERSION}/pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz \
+ENV PATHVECTOR_VERSION=6.3.2
+
+RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR_VERSION}/pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz \
   tar -xvf pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz \
   rm pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz \
   rm -rf LICENSE README.md \
