@@ -1,4 +1,4 @@
-FROM vojkovic/bird:latest
+FROM pierky/bird:2.15
 
 ENV PATHVECTOR_VERSION=6.3.2
 
