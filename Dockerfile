@@ -2,7 +2,10 @@ FROM alpine:latest
 
 RUN apk add --no-cache bird
 
-RUN bird # start bird in background to create /var/run/bird.ctl
+# Start bird in the background to create /run/bird.ctl
+# and ensure it runs in the foreground in a separate command
+RUN bird -c /etc/bird.conf && \
+  birdc configure
 
 ENV PATHVECTOR_VERSION=6.3.2
 
