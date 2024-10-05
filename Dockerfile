@@ -1,4 +1,8 @@
-FROM vojkovic/bird:latest
+FROM alpine:latest
+
+RUN apk add --no-cache bird
+
+RUN bird # start bird in background to create /var/run/bird.ctl
 
 ENV PATHVECTOR_VERSION=6.3.2
 
