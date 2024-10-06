@@ -13,4 +13,4 @@ RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR
   mkdir -p /etc/bird && \
   chmod +x /usr/local/bin/pathvector
 
-CMD ["/bin/sh", "-c", "bird -c /etc/bird.conf -s /run/bird/bird.ctl && pathvector -v -c /etc/pathvector.yml generate"]
+CMD ["/bin/sh", "-c", "bird -c /etc/bird.conf -s /run/bird/bird.ctl & pathvector -v -c /etc/pathvector.yml generate && tail -f /dev/null"]
