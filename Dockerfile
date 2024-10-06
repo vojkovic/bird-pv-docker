@@ -3,8 +3,7 @@ FROM alpine:latest
 ENV PATHVECTOR_VERSION=6.3.2
 
 RUN apk add --no-cache bird && \
-  mkdir -p /run/bird && \
-  bird -c /etc/bird.conf -s /run/bird/bird.ctl
+  mkdir -p /run/bird
 
 RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR_VERSION}/pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
   tar -xvf pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
@@ -14,4 +13,4 @@ RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR
   mkdir -p /etc/bird && \
   chmod +x /usr/local/bin/pathvector
 
-CMD ["pathvector", "-v", "-c", "/etc/pathvector.yml", "generate"]
+CMD ["/bin/sh", "-c", "bird -c /etc/bird.conf -s /run/bird/bird.ctl && pathvector -v -c /etc/pathvector.yml generate"]
