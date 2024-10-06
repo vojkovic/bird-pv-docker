@@ -1,13 +1,10 @@
 FROM alpine:latest
 
-RUN apk add --no-cache bird
-
-# Start bird in the background to create /run/bird.ctl
-# and ensure it runs in the foreground in a separate command
-RUN bird -c /etc/bird.conf && \
-  birdc configure
-
 ENV PATHVECTOR_VERSION=6.3.2
+
+RUN apk add --no-cache bird && \
+  mkdir -p /run/bird && \
+  bird -c /etc/bird.conf -s /run/bird/bird.ctl
 
 RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR_VERSION}/pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
   tar -xvf pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
