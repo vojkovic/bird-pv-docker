@@ -35,7 +35,7 @@ COPY ./caramel/package.json .
 
 RUN yarn
 
-RUN apk update && apk add --no-cache bird mtr tcptraceroute
+RUN mkdir /etc/bird && apk update && apk add --no-cache bird mtr tcptraceroute
 
 ENV NODE_ENV="production"
 
