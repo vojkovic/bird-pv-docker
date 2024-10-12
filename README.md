@@ -1,7 +1,16 @@
 # bird-pv-docker
 
+NOTICE: The default socket path for bird is `/run/bird.ctl`, you will need to set the `bird-socket` option in the Pathvector configuration file to `/run/bird.ctl` if you are using the default socket path.
+
+i.e.
+
+```yaml
+bird-socket: /run/bird.ctl
+```
+
 bird-pv-docker is a Docker image for the [BIRD Internet Routing Daemon](http://bird.network.cz/) with [Pathvector](https://pathvector.io/) support. The image is based on the [Alpine Linux](https://alpinelinux.org/) distribution.
 
+Also has caramel support for BGP monitoring.
 
 ## Usage
 
