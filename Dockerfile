@@ -37,8 +37,6 @@ RUN yarn
 
 RUN apk update && apk add --no-cache bird mtr tcptraceroute
 
-USER node
-
 ENV NODE_ENV="production"
 
 CMD ["/bin/sh", "-c", "bird -c /etc/bird.conf && pathvector -v -c /etc/pathvector.yml generate && killall bird && bird -c /etc/bird/bird.conf && node build/index.js"]
