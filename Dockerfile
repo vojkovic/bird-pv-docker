@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-ENV PATHVECTOR_VERSION=6.3.2
-
 FROM node:18-alpine AS deps
 
 RUN apk add --no-cache libc6-compat
@@ -18,6 +16,8 @@ COPY caramel/ ./
 COPY --from=deps /app/node_modules ./node_modules
 
 RUN yarn build
+
+ENV PATHVECTOR_VERSION=6.3.2
 
 RUN wget https://github.com/natesales/pathvector/releases/download/v${PATHVECTOR_VERSION}/pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
   tar -xvf pathvector_${PATHVECTOR_VERSION}_linux_amd64.tar.gz && \
