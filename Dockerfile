@@ -4,14 +4,14 @@ FROM node:18-alpine AS deps
 
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY caramel/package.json caramel/yarn.lock ./
+COPY confetti/package.json confetti/yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY caramel/ ./
+COPY confetti/ ./
 
 COPY --from=deps /app/node_modules ./node_modules
 
@@ -31,7 +31,7 @@ COPY --from=builder /app/build ./build
 
 COPY --from=builder /app/pathvector /usr/bin/pathvector
 
-COPY ./caramel/package.json .
+COPY ./confetti/package.json .
 
 RUN yarn
 

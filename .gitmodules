@@ -1,3 +1,6 @@
 [submodule "caramel"]
 	path = caramel
 	url = https://github.com/KittensAreDaBest/caramel
+[submodule "confetti"]
+	path = confetti
+	url = https://github.com/vojkovic/confetti

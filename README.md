@@ -10,7 +10,7 @@ bird-socket: /run/bird.ctl
 
 bird-pv-docker is a Docker image for the [BIRD Internet Routing Daemon](http://bird.network.cz/) with [Pathvector](https://pathvector.io/) support. The image is based on the [Alpine Linux](https://alpinelinux.org/) distribution.
 
-Also has caramel support for BGP monitoring.
+Also has [confetti](https://github.com/vojkovic/confetti) support for BGP monitoring.
 
 ## Usage
 
