@@ -28,14 +28,23 @@ FROM node:18-alpine AS runner
 WORKDIR /usr/app
 
 COPY --from=builder /app/build ./build
-
 COPY --from=builder /app/pathvector /usr/bin/pathvector
-
 COPY ./confetti/package.json .
 
 RUN yarn
 
-RUN mkdir /etc/bird && apk update && apk add --no-cache bird bgpq4 keepalived mtr tcptraceroute
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
+
+RUN apk update && apk add --no-cache \
+    bird \
+    bgpq4 \
+    keepalived \
+    mtr \
+    tcptraceroute
+
+RUN mkdir /etc/bird
 
 ENV NODE_ENV="production"
 
