@@ -33,19 +33,15 @@ COPY ./confetti/package.json .
 
 RUN yarn
 
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-    echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
+RUN mkdir /etc/bird
 
 RUN apk update && apk add --no-cache \
     bird \
-    bgpq4 \
     keepalived \
     mtr \
     tcptraceroute
 
-RUN mkdir /etc/bird
-
+RUN apk add --no-cache -X https://dl-cdn.alpinelinux.org/alpine/edge/testing bgpq4
 ENV NODE_ENV="production"
 
 CMD ["/bin/sh", "-c", "bird -c /etc/bird.conf && pathvector -v -c /etc/pathvector.yml generate && killall bird && bird -c /etc/bird/bird.conf && node build/index.js"]
