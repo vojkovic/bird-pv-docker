@@ -35,7 +35,7 @@ COPY ./confetti/package.json .
 
 RUN yarn
 
-RUN mkdir /etc/bird && apk update && apk add --no-cache bird mtr tcptraceroute
+RUN mkdir /etc/bird && apk update && apk add --no-cache bird bgpq4 keepalived mtr tcptraceroute
 
 ENV NODE_ENV="production"
 
